@@ -4,9 +4,5 @@ public class App {
     FoodOrder food = new FoodOrder();
     food.displayMenu();
     food.order();
-
-    
-
-    
     }
 }

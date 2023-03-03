@@ -46,7 +46,7 @@ public class FoodOrder {
                     extraArr = (int) (extraArrows * PRICEFORARROW);
                     arrowForPackage = arrowForPackage + extraArr;
 
-                }
+                } break;
                 case 2 : {
                     System.out.println("You have Selected Two Player Package\n");
                     System.out.println("Enter number of package: ");
@@ -67,8 +67,7 @@ public class FoodOrder {
                     extraArr = (int) (extraArrows * PRICEFORARROW);
                     arrowForPackage = arrowForPackage + extraArr;
 
-
-                }
+                }break;
                 case 3 : {
                     System.out.println("You have Selected Family Package\n");
                     System.out.println("Enter number of package: ");
@@ -81,14 +80,14 @@ public class FoodOrder {
                     System.out.println("How many drinks you want to buy[RM2 per person]: ");
                     drinks = scan.nextInt();
                     packagePrice =(numOfPackage * PRICEFORFAMILY);
-                    additionalItems = (extraArrows * PRICEFORARROW)+(drinks * PRICEFORDRINK);
+                    additionalItems = ((extraArrows * PRICEFORARROW)+(drinks * PRICEFORDRINK));
                     sst = ((packagePrice + additionalItems) % 6);
                     total =(packagePrice + additionalItems +sst);
                     packageForDisplay = "Family package *"+numOfPackage;
                     arrowForPackage = 100;
                     extraArr = (int) (extraArrows * PRICEFORARROW);
                     arrowForPackage = arrowForPackage + extraArr;
-                }
+                } break;
                 default : break;
             }
             generateBill();
@@ -102,7 +101,7 @@ public class FoodOrder {
         System.out.println((formatter.format(date)));
         System.out.println(packageForDisplay);
         if(extraArrows == 0 && drinks == 0) {
-            System.out.printf("\nTotal Arrows:  %d",arrowForPackage);
+            System.out.printf("Total Arrows:  %d\n",arrowForPackage);
         }
         else if(extraArrows == 0 && drinks > 0) {
             System.out.printf("Number of Drinks: %d\n",drinks);
@@ -115,12 +114,11 @@ public class FoodOrder {
         }
 
               System.out.printf("Package price: %.2f\n",packagePrice);
-              System.out.printf("Additional Items: %.2f\n",additionalItems);
+                if(extraArrows !=0 && drinks != 0 ){
+              System.out.printf("Additional Items: %.2f\n",additionalItems);}
               System.out.printf("6%% SST: %.2f\n",sst);
               System.out.printf("Net Price: %.2f\n",total);
         do {
-
-
             System.out.print("Do you wish to order anything else [1 - 2] : ");
             reOrder = scan.nextInt();
             if (reOrder == 1) {
@@ -131,7 +129,7 @@ public class FoodOrder {
             } else {
                 System.out.println("Invalid Choice");
             }
-        }while(reOrder == 1 || reOrder == 2);
+        }while(!(reOrder == 1 || reOrder == 2));
     }
 
 }
