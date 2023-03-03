@@ -13,7 +13,9 @@ public class FoodOrder {
     public void displayMenu(){
         System.out.println("Welcome to Sunway Archery");
         System.out.println((formatter.format(date)));
-        System.out.println("Welcome to Sunway Archery");
+        System.out.println("1. One Player Package RM19.90");
+        System.out.println("2. Two Players Package RM39.90");
+        System.out.println("3. Family Package RM59.90");
     }
 
 
