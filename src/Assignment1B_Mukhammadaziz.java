@@ -141,15 +141,15 @@ public class Assignment1B_Mukhammadaziz {
                     arrowForPackage = ((arrowForPackage * numOfPackage) + extraArrows);
                 }
                 break;
-                default:
-                    break;
+
+                default: break;
             }
             //calling method generateBill
             generateBill();
             System.out.println();
-
         } while (true);
     }
+
 
     //Method to create output
     public void generateBill()
@@ -177,7 +177,7 @@ public class Assignment1B_Mukhammadaziz {
               System.out.printf("6%% SST: %.2f\n",sst);
                System.out.printf("Net Price: %.2f\n",total);
         do {
-            //prompt user to start new order or finish the program user should input 1-2 in order to proceed
+            //prompt user to start new order or finish the program. user should input 1-2 in order to continue
             System.out.print("\nDo you wish to order anything else [1 - 2] : ");
             reOrder = scan.nextInt();
                  //reorder
