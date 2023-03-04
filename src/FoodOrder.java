@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -5,10 +6,11 @@ import java.util.Scanner;
 public class FoodOrder {
     Scanner scan = new Scanner(System.in);
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
     Date date = new Date();
     int choosenPackage = 0, numOfPackage = 0,addArrows = 0,
             extraArrows = 0, drinks = 0,reOrder = 0,arrowForPackage = 0,extraArr= 0;
-    final double PRICEFORONE = 19.90, PRICEFORTWO = 39.90, PRICEFORFAMILY = 59.90,PRICEFORDRINK = 2,
+    final double PRICEFORONE = 19.90, PRICEFORTWO = 39.90, PRICEFORFAMILY = 69.90,PRICEFORDRINK = 2,
             PRICEFORARROW = 10;
     double total =0, packagePrice =0, sst = 0,additionalItems = 0;
     String packageForDisplay =null;
@@ -43,15 +45,17 @@ public class FoodOrder {
                         extraArrows = scan.nextInt();}while(!(extraArrows > 0));}
                     do {
                         System.out.println("How many drinks you want to buy[RM2 per person]: ");
-                        drinks = scan.nextInt();}while (!(drinks > 0));
+                        drinks = scan.nextInt();}while (!(drinks >= 0));
                     packagePrice =(numOfPackage * PRICEFORONE);
-                    additionalItems = (addArrows *PRICEFORARROW)+(drinks*PRICEFORDRINK);
-                    sst = ((packagePrice + additionalItems) % 6);
-                    total =(packagePrice + additionalItems +sst);
+                    additionalItems = (extraArrows * PRICEFORARROW)+(drinks * PRICEFORDRINK);
+                    extraArrows = (int) (extraArrows * PRICEFORARROW);
+                    sst = (((packagePrice + additionalItems)/100)*6);
+                    sst = Math.ceil(sst * 100) / 100.0;
+                    total =(packagePrice + additionalItems + sst);
                     packageForDisplay = "one-player package *"+numOfPackage;
                     arrowForPackage = 20;
-                    extraArr = (int) (extraArrows * PRICEFORARROW);
-                    arrowForPackage = ((arrowForPackage * numOfPackage) + extraArr);
+                  //  extraArr = (int) (extraArrows * PRICEFORARROW);
+                    arrowForPackage = ((arrowForPackage * numOfPackage) + extraArrows);
 
                 } break;
                 case 2 : {
@@ -68,15 +72,17 @@ public class FoodOrder {
                         extraArrows = scan.nextInt();}while(!(extraArrows > 0));}
                     do {
                         System.out.println("How many drinks you want to buy[RM2 per person]: ");
-                        drinks = scan.nextInt();}while (!(drinks > 0));
+                        drinks = scan.nextInt();}while (!(drinks >= 0));
                     packagePrice =(numOfPackage * PRICEFORTWO);
-                    additionalItems = (addArrows *PRICEFORARROW)+(drinks*PRICEFORDRINK);
-                    sst = ((packagePrice + additionalItems) % 6);
+                    additionalItems = (extraArrows *PRICEFORARROW)+(drinks*PRICEFORDRINK);
+                    extraArrows = (int) (extraArrows * PRICEFORARROW);
+                    sst = (((packagePrice + additionalItems)/100)*6);
+                    sst = Math.ceil(sst * 100) / 100.0;
                     total =(packagePrice + additionalItems +sst);
                     packageForDisplay = "two-player package *"+numOfPackage;
                     arrowForPackage = 50;
-                    extraArr = (int) (extraArrows * PRICEFORARROW);
-                    arrowForPackage = ((arrowForPackage * numOfPackage) + extraArr);
+                 //   extraArr = (int) (extraArrows * PRICEFORARROW);
+                    arrowForPackage = ((arrowForPackage * numOfPackage) + extraArrows);
 
                 }break;
                 case 3 : {
@@ -93,15 +99,17 @@ public class FoodOrder {
                         extraArrows = scan.nextInt();}while(!(extraArrows > 0));}
                     do {
                         System.out.println("How many drinks you want to buy[RM2 per person]: ");
-                        drinks = scan.nextInt();}while (!(drinks > 0));
+                        drinks = scan.nextInt();}while (!(drinks >= 0));
                     packagePrice =(numOfPackage * PRICEFORFAMILY);
-                    additionalItems = ((extraArrows * PRICEFORARROW)+(drinks * PRICEFORDRINK));
-                    sst = ((packagePrice + additionalItems) % 6);
+                    additionalItems = (extraArrows *PRICEFORARROW)+(drinks*PRICEFORDRINK);
+                    arrowForPackage = 100;
+                    extraArrows = (int) (extraArrows * PRICEFORARROW);
+                    sst = (((packagePrice + additionalItems)/100)*6);
+                    sst = Math.ceil(sst * 100) / 100.0;
                     total =(packagePrice + additionalItems +sst);
                     packageForDisplay = "Family package *"+numOfPackage;
-                    arrowForPackage = 100;
-                    extraArr = (int) (extraArrows * PRICEFORARROW);
-                    arrowForPackage = ((arrowForPackage * numOfPackage) + extraArr);
+                //    extraArr = (int) (extraArrows * PRICEFORARROW);
+                    arrowForPackage = ((arrowForPackage * numOfPackage) + extraArrows);
                 } break;
                 default : break;
             }
@@ -123,18 +131,18 @@ public class FoodOrder {
             System.out.printf("\nTotal Arrows:  %d\n",arrowForPackage);
         }
         else{
-            System.out.printf("Number of additional arrow: %d\n",extraArrows);
+            System.out.printf("\nNumber of additional arrow: %d\n",extraArrows);
             System.out.printf("Number of Drinks: %d\n",drinks);
-            System.out.printf("\nTotal Arrows:  %d\n\n",arrowForPackage);
+            System.out.printf("Total Arrows:  %d\n",arrowForPackage);
         }
 
-              System.out.printf("Package price: %.2f\n",packagePrice);
+              System.out.printf("\nPackage price: %.2f\n",packagePrice);
                 if(extraArrows !=0 && drinks != 0 ){
               System.out.printf("Additional Items: %.2f\n",additionalItems);}
               System.out.printf("6%% SST: %.2f\n",sst);
-              System.out.printf("Net Price: %.2f\n",total);
+               System.out.printf("Net Price: %.2f\n",total);
         do {
-            System.out.print("Do you wish to order anything else [1 - 2] : ");
+            System.out.print("\nDo you wish to order anything else [1 - 2] : ");
             reOrder = scan.nextInt();
             if (reOrder == 1) {
                 order();
