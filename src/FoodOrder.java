@@ -1,20 +1,24 @@
-import java.text.DecimalFormat;
+//Libraries
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
 public class FoodOrder {
+    //Initialize scanner and date formatter
     Scanner scan = new Scanner(System.in);
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
     Date date = new Date();
-    int choosenPackage = 0, numOfPackage = 0,addArrows = 0,
-            extraArrows = 0, drinks = 0,reOrder = 0,arrowForPackage = 0,extraArr= 0;
-    final double PRICEFORONE = 19.90, PRICEFORTWO = 39.90, PRICEFORFAMILY = 69.90,PRICEFORDRINK = 2,
-            PRICEFORARROW = 10;
+
+
+    // Initialize variables for use in the class
+    int choosenPackage = 0, numOfPackage = 0,addArrows = 0,extraArrows = 0, drinks = 0,reOrder = 0,arrowForPackage = 0;
+    final double PRICEFORONE = 19.90, PRICEFORTWO = 39.90, PRICEFORFAMILY = 69.90,PRICEFORDRINK = 2, PRICEFORARROW = 10;
     double total =0, packagePrice =0, sst = 0,additionalItems = 0;
     String packageForDisplay =null;
 
+
+    //Method to display the menu
     public void displayMenu() {
         System.out.println("Welcome to Sunway Archery");
         System.out.println((formatter.format(date)));
@@ -23,101 +27,121 @@ public class FoodOrder {
         System.out.println("3. Family Package [RM59.90]");
     }
 
+    // Method to take the user order
     public void order() {
-        while (true) {
-         do {
-             displayMenu();
-             System.out.print("\nEnter Your Choice[1-3]: ");
-             choosenPackage = scan.nextInt();
-         } while(!(choosenPackage >= 1 && choosenPackage <= 3));
+        //Use of loop until valid input from user
+        do {
+            do {
+                displayMenu();
+                System.out.print("\nEnter Your Choice[1-3]: ");
+                choosenPackage = scan.nextInt();
+            } while (!(choosenPackage >= 1 && choosenPackage <= 3));
             switch (choosenPackage) {
-                case 1 : {
-                        System.out.println("You have Selected One Player Package\n");
+                case 1: {
+                    System.out.println("You have Selected One Player Package\n");
                     do {
                         System.out.println("Enter number of package: ");
                         numOfPackage = scan.nextInt();
-                    } while(!(numOfPackage > 0));
-                    do{
+                    } while (!(numOfPackage > 0));
+                    do {
                         System.out.println("Do you want to add extra arrows[1-yes , 2-no] : ");
-                        addArrows = scan.nextInt();} while (!(addArrows == 1 || addArrows ==2));
-                    if(addArrows != 2){ do{
-                        System.out.println("How many arrows do you want to add [10-arrows [RM10]]: ");
-                        extraArrows = scan.nextInt();}while(!(extraArrows > 0));}
+                        addArrows = scan.nextInt();
+                    } while (!(addArrows == 1 || addArrows == 2));
+                    if (addArrows != 2) {
+                        do {
+                            System.out.println("How many arrows do you want to add [1- Set = 10-arrows [RM10]]: ");
+                            extraArrows = scan.nextInt();
+                        } while (!(extraArrows > 0));
+                    }
                     do {
                         System.out.println("How many drinks you want to buy[RM2 per person]: ");
-                        drinks = scan.nextInt();}while (!(drinks >= 0));
-                    packagePrice =(numOfPackage * PRICEFORONE);
-                    additionalItems = (extraArrows * PRICEFORARROW)+(drinks * PRICEFORDRINK);
+                        drinks = scan.nextInt();
+                    } while (!(drinks >= 0));
+                    packagePrice = (numOfPackage * PRICEFORONE);
+                    additionalItems = (extraArrows * PRICEFORARROW) + (drinks * PRICEFORDRINK);
                     extraArrows = (int) (extraArrows * PRICEFORARROW);
-                    sst = (((packagePrice + additionalItems)/100)*6);
+                    sst = (((packagePrice + additionalItems) / 100) * 6);
                     sst = Math.ceil(sst * 100) / 100.0;
-                    total =(packagePrice + additionalItems + sst);
-                    packageForDisplay = "one-player package *"+numOfPackage;
+                    total = (packagePrice + additionalItems + sst);
+                    packageForDisplay = "one-player package *" + numOfPackage;
                     arrowForPackage = 20;
-                  //  extraArr = (int) (extraArrows * PRICEFORARROW);
                     arrowForPackage = ((arrowForPackage * numOfPackage) + extraArrows);
 
-                } break;
-                case 2 : {
+                }
+                break;
+                case 2: {
                     System.out.println("You have Selected Two Player Package\n");
                     do {
                         System.out.println("Enter number of package: ");
                         numOfPackage = scan.nextInt();
-                    } while(!(numOfPackage > 0));
-                    do{
+                    } while (!(numOfPackage > 0));
+                    do {
                         System.out.println("Do you want to add extra arrows[1-yes , 2-no] : ");
-                        addArrows = scan.nextInt();} while (!(addArrows == 1 || addArrows ==2));
-                    if(addArrows != 2){ do{
-                        System.out.println("How many arrows do you want to add [10-arrows [RM10]]: ");
-                        extraArrows = scan.nextInt();}while(!(extraArrows > 0));}
+                        addArrows = scan.nextInt();
+                    } while (!(addArrows == 1 || addArrows == 2));
+                    if (addArrows != 2) {
+                        do {
+                            System.out.println("How many arrows do you want to add [1- Set = 10-arrows [RM10]]: ");
+                            extraArrows = scan.nextInt();
+                        } while (!(extraArrows > 0));
+                    }
                     do {
                         System.out.println("How many drinks you want to buy[RM2 per person]: ");
-                        drinks = scan.nextInt();}while (!(drinks >= 0));
-                    packagePrice =(numOfPackage * PRICEFORTWO);
-                    additionalItems = (extraArrows *PRICEFORARROW)+(drinks*PRICEFORDRINK);
+                        drinks = scan.nextInt();
+                    } while (!(drinks >= 0));
+                    packagePrice = (numOfPackage * PRICEFORTWO);
+                    additionalItems = (extraArrows * PRICEFORARROW) + (drinks * PRICEFORDRINK);
                     extraArrows = (int) (extraArrows * PRICEFORARROW);
-                    sst = (((packagePrice + additionalItems)/100)*6);
+                    sst = (((packagePrice + additionalItems) / 100) * 6);
                     sst = Math.ceil(sst * 100) / 100.0;
-                    total =(packagePrice + additionalItems +sst);
-                    packageForDisplay = "two-player package *"+numOfPackage;
+                    total = (packagePrice + additionalItems + sst);
+                    packageForDisplay = "two-player package *" + numOfPackage;
                     arrowForPackage = 50;
-                 //   extraArr = (int) (extraArrows * PRICEFORARROW);
                     arrowForPackage = ((arrowForPackage * numOfPackage) + extraArrows);
 
-                }break;
-                case 3 : {
+                }
+                break;
+                case 3: {
                     System.out.println("You have Selected Family Package\n");
                     do {
                         System.out.println("Enter number of package: ");
                         numOfPackage = scan.nextInt();
-                    } while(!(numOfPackage > 0));
-                    do{
+                    } while (!(numOfPackage > 0));
+                    do {
                         System.out.println("Do you want to add extra arrows[1-yes , 2-no] : ");
-                        addArrows = scan.nextInt();} while (!(addArrows == 1 || addArrows ==2));
-                    if(addArrows != 2){ do{
-                        System.out.println("How many arrows do you want to add [10-arrows [RM10]]: ");
-                        extraArrows = scan.nextInt();}while(!(extraArrows > 0));}
+                        addArrows = scan.nextInt();
+                    } while (!(addArrows == 1 || addArrows == 2));
+                    if (addArrows != 2) {
+                        do {
+                            System.out.println("How many arrows do you want to add [1- Set = 10-arrows [RM10]]: ");
+                            extraArrows = scan.nextInt();
+                        } while (!(extraArrows > 0));
+                    }
                     do {
                         System.out.println("How many drinks you want to buy[RM2 per person]: ");
-                        drinks = scan.nextInt();}while (!(drinks >= 0));
-                    packagePrice =(numOfPackage * PRICEFORFAMILY);
-                    additionalItems = (extraArrows *PRICEFORARROW)+(drinks*PRICEFORDRINK);
+                        drinks = scan.nextInt();
+                    } while (!(drinks >= 0));
+                    packagePrice = (numOfPackage * PRICEFORFAMILY);
+                    additionalItems = (extraArrows * PRICEFORARROW) + (drinks * PRICEFORDRINK);
                     arrowForPackage = 100;
                     extraArrows = (int) (extraArrows * PRICEFORARROW);
-                    sst = (((packagePrice + additionalItems)/100)*6);
+                    sst = (((packagePrice + additionalItems) / 100) * 6);
                     sst = Math.ceil(sst * 100) / 100.0;
-                    total =(packagePrice + additionalItems +sst);
-                    packageForDisplay = "Family package *"+numOfPackage;
-                //    extraArr = (int) (extraArrows * PRICEFORARROW);
+                    total = (packagePrice + additionalItems + sst);
+                    packageForDisplay = "Family package *" + numOfPackage;
                     arrowForPackage = ((arrowForPackage * numOfPackage) + extraArrows);
-                } break;
-                default : break;
+                }
+                break;
+                default:
+                    break;
             }
             generateBill();
             System.out.println();
 
-        }
+        } while (true);
     }
+
+    //Method to create output
     public void generateBill()
     {
         System.out.println("***Sunway Archery***");
