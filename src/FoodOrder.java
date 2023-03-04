@@ -23,20 +23,27 @@ public class FoodOrder {
 
     public void order() {
         while (true) {
-            System.out.print("Enter Your Choice[1-3] ");
-            choosenPackage = scan.nextInt();
+         do {
+             displayMenu();
+             System.out.print("\nEnter Your Choice[1-3]: ");
+             choosenPackage = scan.nextInt();
+         } while(!(choosenPackage >= 1 && choosenPackage <= 3));
             switch (choosenPackage) {
                 case 1 : {
-                    System.out.println("You have Selected One Player Package\n");
-                    System.out.println("Enter number of package: ");
-                    numOfPackage = scan.nextInt();
-                    System.out.println("Do you want to add extra arrows[1-yes , 2-no] : ");
-                    addArrows = scan.nextInt();
-                    if(addArrows != 2){
-                    System.out.println("How many arrows do you want to add [10-arrows [RM10]]: ");
-                    extraArrows = scan.nextInt();}
-                    System.out.println("How many drinks you want to buy[RM2 per person]: ");
-                    drinks = scan.nextInt();
+                        System.out.println("You have Selected One Player Package\n");
+                    do {
+                        System.out.println("Enter number of package: ");
+                        numOfPackage = scan.nextInt();
+                    } while(!(numOfPackage > 0));
+                    do{
+                        System.out.println("Do you want to add extra arrows[1-yes , 2-no] : ");
+                        addArrows = scan.nextInt();} while (!(addArrows == 1 || addArrows ==2));
+                    if(addArrows != 2){ do{
+                        System.out.println("How many arrows do you want to add [10-arrows [RM10]]: ");
+                        extraArrows = scan.nextInt();}while(!(extraArrows > 0));}
+                    do {
+                        System.out.println("How many drinks you want to buy[RM2 per person]: ");
+                        drinks = scan.nextInt();}while (!(drinks > 0));
                     packagePrice =(numOfPackage * PRICEFORONE);
                     additionalItems = (addArrows *PRICEFORARROW)+(drinks*PRICEFORDRINK);
                     sst = ((packagePrice + additionalItems) % 6);
@@ -44,20 +51,24 @@ public class FoodOrder {
                     packageForDisplay = "one-player package *"+numOfPackage;
                     arrowForPackage = 20;
                     extraArr = (int) (extraArrows * PRICEFORARROW);
-                    arrowForPackage = arrowForPackage + extraArr;
+                    arrowForPackage = ((arrowForPackage * numOfPackage) + extraArr);
 
                 } break;
                 case 2 : {
                     System.out.println("You have Selected Two Player Package\n");
-                    System.out.println("Enter number of package: ");
-                    numOfPackage = scan.nextInt();
-                    System.out.println("Do you want to add extra arrows[1-yes , 2-no] : ");
-                    addArrows = scan.nextInt();
-                    if(addArrows != 2){
-                    System.out.println("How many arrows do you want to add [10-arrows [RM10]]: ");
-                    extraArrows = scan.nextInt();}
-                    System.out.println("How many drinks you want to buy[RM2 per person]: ");
-                    drinks = scan.nextInt();
+                    do {
+                        System.out.println("Enter number of package: ");
+                        numOfPackage = scan.nextInt();
+                    } while(!(numOfPackage > 0));
+                    do{
+                        System.out.println("Do you want to add extra arrows[1-yes , 2-no] : ");
+                        addArrows = scan.nextInt();} while (!(addArrows == 1 || addArrows ==2));
+                    if(addArrows != 2){ do{
+                        System.out.println("How many arrows do you want to add [10-arrows [RM10]]: ");
+                        extraArrows = scan.nextInt();}while(!(extraArrows > 0));}
+                    do {
+                        System.out.println("How many drinks you want to buy[RM2 per person]: ");
+                        drinks = scan.nextInt();}while (!(drinks > 0));
                     packagePrice =(numOfPackage * PRICEFORTWO);
                     additionalItems = (addArrows *PRICEFORARROW)+(drinks*PRICEFORDRINK);
                     sst = ((packagePrice + additionalItems) % 6);
@@ -65,20 +76,24 @@ public class FoodOrder {
                     packageForDisplay = "two-player package *"+numOfPackage;
                     arrowForPackage = 50;
                     extraArr = (int) (extraArrows * PRICEFORARROW);
-                    arrowForPackage = arrowForPackage + extraArr;
+                    arrowForPackage = ((arrowForPackage * numOfPackage) + extraArr);
 
                 }break;
                 case 3 : {
                     System.out.println("You have Selected Family Package\n");
-                    System.out.println("Enter number of package: ");
-                    numOfPackage = scan.nextInt();
-                    System.out.println("Do you want to add extra arrows[1-yes , 2-no] : ");
-                    addArrows = scan.nextInt();
-                    if(addArrows != 2){
-                    System.out.println("How many arrows do you want to add [10-arrows [RM10]]: ");
-                    extraArrows = scan.nextInt();}
-                    System.out.println("How many drinks you want to buy[RM2 per person]: ");
-                    drinks = scan.nextInt();
+                    do {
+                        System.out.println("Enter number of package: ");
+                        numOfPackage = scan.nextInt();
+                    } while(!(numOfPackage > 0));
+                    do{
+                        System.out.println("Do you want to add extra arrows[1-yes , 2-no] : ");
+                        addArrows = scan.nextInt();} while (!(addArrows == 1 || addArrows ==2));
+                    if(addArrows != 2){ do{
+                        System.out.println("How many arrows do you want to add [10-arrows [RM10]]: ");
+                        extraArrows = scan.nextInt();}while(!(extraArrows > 0));}
+                    do {
+                        System.out.println("How many drinks you want to buy[RM2 per person]: ");
+                        drinks = scan.nextInt();}while (!(drinks > 0));
                     packagePrice =(numOfPackage * PRICEFORFAMILY);
                     additionalItems = ((extraArrows * PRICEFORARROW)+(drinks * PRICEFORDRINK));
                     sst = ((packagePrice + additionalItems) % 6);
@@ -86,7 +101,7 @@ public class FoodOrder {
                     packageForDisplay = "Family package *"+numOfPackage;
                     arrowForPackage = 100;
                     extraArr = (int) (extraArrows * PRICEFORARROW);
-                    arrowForPackage = arrowForPackage + extraArr;
+                    arrowForPackage = ((arrowForPackage * numOfPackage) + extraArr);
                 } break;
                 default : break;
             }
