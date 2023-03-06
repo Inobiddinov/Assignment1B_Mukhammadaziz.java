@@ -33,6 +33,7 @@ public class Assignment1B_Mukhammadaziz {
         System.out.println("3. Family Package [RM59.90]");
     }
 
+    //Method to get package details
     public void getPackageDetails() {
         do {
             // Prompts user for package details
