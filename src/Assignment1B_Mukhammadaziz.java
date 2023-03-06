@@ -3,7 +3,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+//Main Function
 public class Assignment1B_Mukhammadaziz {
+    public static void main(String[] args) {
+        RunProgram archery = new RunProgram();
+        archery.order();
+    }
+}
+
+ class RunProgram {
     //Initialize scanner and date formatter
     Scanner scan = new Scanner(System.in);
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
