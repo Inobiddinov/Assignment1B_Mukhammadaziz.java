@@ -1,5 +1,4 @@
 //Libraries
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -8,9 +7,7 @@ public class Assignment1B_Mukhammadaziz {
     //Initialize scanner and date formatter
     Scanner scan = new Scanner(System.in);
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-
     Date date = new Date();
-
 
     // Initialize variables for use in the class
     int choosenPackage = 0, numOfPackage = 0, addArrows = 0, extraArrows = 0, drinks = 0, reOrder = 0, arrowForPackage = 0;
@@ -49,7 +46,6 @@ public class Assignment1B_Mukhammadaziz {
             drinks = scan.nextInt();
         } while (!(drinks >= 0));
     }
-
     // Method to take the user order
     public void order() {
         //Use of loop until valid input from user
@@ -108,7 +104,6 @@ public class Assignment1B_Mukhammadaziz {
                     arrowForPackage = ((arrowForPackage * numOfPackage) + extraArrows);
                     break;
                 }
-
                 default:
                     break;
             }
@@ -117,7 +112,6 @@ public class Assignment1B_Mukhammadaziz {
             System.out.println();
         } while (true);
     }
-
 
     //Method to create output
     public void generateBill() {
