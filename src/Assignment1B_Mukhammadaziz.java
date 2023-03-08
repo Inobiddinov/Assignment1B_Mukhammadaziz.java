@@ -3,7 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-//Main Function
+
 public class Assignment1B_Mukhammadaziz {
     public static void main(String[] args) {
 
@@ -35,6 +35,7 @@ public class Assignment1B_Mukhammadaziz {
                 choosenPackage = scan.nextInt();
             } while (!(choosenPackage >= 1 && choosenPackage <= 3));
             switch (choosenPackage) {
+
                 //One player Package
                 case 1: {
                     System.out.println("You have Selected One Player Package\n");
