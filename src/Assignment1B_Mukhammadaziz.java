@@ -1,4 +1,5 @@
 //Libraries
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -7,24 +8,28 @@ import java.util.Scanner;
 public class Assignment1B_Mukhammadaziz {
     public static void main(String[] args) {
 
-        //Initialize Scanner and date
-        Scanner scan = new Scanner(System.in);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date date = new Date();
-
-        // Initialize & Declare variables for use in the class
-        int choosenPackage = 0, numOfPackage = 0, addArrows = 0, extraArrows = 0, drinks = 0, reOrder = 0, arrowForPackage = 0;
-
-        final double PRICEFORONE = 19.90, PRICEFORTWO = 39.90, PRICEFORFAMILY = 69.90, PRICEFORDRINK = 2, PRICEFORARROW = 10;
-
-        double total = 0, packagePrice = 0, sst = 0, additionalItems = 0;
-
         String packageForDisplay = null;
 
         boolean newOrder = false;
 
+        int reOrder;
+
         //Use of loop until valid input from user
         do {
+            //Initialize Scanner and date
+            Scanner scan = new Scanner(System.in);
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date date = new Date();
+
+            // Initialize & Declare variables for use in the class
+            int choosenPackage = 0,numOfPackage = 0,addArrows = 0,extraArrows = 0,drinks = 0,arrowForPackage = 0;
+
+            final double PRICE_FOR_ONE = 19.90, PRICE_FOR_TWO = 39.90, PRICE_FOR_FAMILY = 69.90, PRICE_FOR_DRINK = 2, PRICE_FOR_ARROW = 10;
+
+            double total = 0, packagePrice = 0, sst = 0, additionalItems = 0;
+
+            reOrder = 0;
+
             do {
                 System.out.println("Welcome to Sunway Archery");
                 System.out.println((formatter.format(date)));
@@ -59,9 +64,9 @@ public class Assignment1B_Mukhammadaziz {
                         drinks = scan.nextInt();
                     } while (!(drinks >= 0));
                     ////calculates total cost, sst, number of Archery,drink and package name
-                    packagePrice = (numOfPackage * PRICEFORONE);
-                    additionalItems = (extraArrows * PRICEFORARROW) + (drinks * PRICEFORDRINK);
-                    extraArrows = (int) (extraArrows * PRICEFORARROW);
+                    packagePrice = (numOfPackage * PRICE_FOR_ONE);
+                    additionalItems = (extraArrows * PRICE_FOR_ARROW) + (drinks * PRICE_FOR_DRINK);
+                    extraArrows = (int) (extraArrows * PRICE_FOR_ARROW);
                     sst = (((packagePrice + additionalItems) / 100) * 6);
                     total = (packagePrice + additionalItems + sst);
                     //Math.round function returns the rounded value for example 21.09 * 10 = 210.9 if we divide into / 10 = answer will be
@@ -96,9 +101,9 @@ public class Assignment1B_Mukhammadaziz {
                         drinks = scan.nextInt();
                     } while (!(drinks >= 0));
                     //calculates total cost, sst, number of Archery,drink and package name
-                    packagePrice = (numOfPackage * PRICEFORTWO);
-                    additionalItems = (extraArrows * PRICEFORARROW) + (drinks * PRICEFORDRINK);
-                    extraArrows = (int) (extraArrows * PRICEFORARROW);
+                    packagePrice = (numOfPackage * PRICE_FOR_TWO);
+                    additionalItems = (extraArrows * PRICE_FOR_ARROW) + (drinks * PRICE_FOR_DRINK);
+                    extraArrows = (int) (extraArrows * PRICE_FOR_ARROW);
                     sst = (((packagePrice + additionalItems) / 100) * 6);
                     total = (packagePrice + additionalItems + sst);
                     //Math.round function returns the rounded value for example 42.29 * 10 = 422.9 if we divide into /10 = answer will be
@@ -132,10 +137,10 @@ public class Assignment1B_Mukhammadaziz {
                         drinks = scan.nextInt();
                     } while (!(drinks >= 0));
                     //calculates total cost, sst, number of Archery,drink and package name
-                    packagePrice = (numOfPackage * PRICEFORFAMILY);
-                    additionalItems = (extraArrows * PRICEFORARROW) + (drinks * PRICEFORDRINK);
+                    packagePrice = (numOfPackage * PRICE_FOR_FAMILY);
+                    additionalItems = (extraArrows * PRICE_FOR_ARROW) + (drinks * PRICE_FOR_DRINK);
                     arrowForPackage = 100;
-                    extraArrows = (int) (extraArrows * PRICEFORARROW);
+                    extraArrows = (int) (extraArrows * PRICE_FOR_ARROW);
                     sst = (((packagePrice + additionalItems) / 100) * 6);
                     total = (packagePrice + additionalItems + sst);
                     //Math.round function returns the rounded value for example 73.09 * 10 = 730.9 if we divide into /10 = answer will be
@@ -177,7 +182,7 @@ public class Assignment1B_Mukhammadaziz {
                 //reorder
                 if (reOrder == 1) {
                     newOrder = true;
-		    System.out.println("\n");
+                    System.out.println("\n");
                 } else if (reOrder == 2) {
                     System.out.println("Thanks for your purchase!");
                     System.exit(1);
@@ -186,6 +191,6 @@ public class Assignment1B_Mukhammadaziz {
                     newOrder = false;
                 }
             } while (!(newOrder));
-        } while ((newOrder));
+        } while ((reOrder == 1));
     }
 }
