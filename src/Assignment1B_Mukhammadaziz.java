@@ -63,8 +63,10 @@ public class Assignment1B_Mukhammadaziz {
                     additionalItems = (extraArrows * PRICEFORARROW) + (drinks * PRICEFORDRINK);
                     extraArrows = (int) (extraArrows * PRICEFORARROW);
                     sst = (((packagePrice + additionalItems) / 100) * 6);
-                    sst = Math.ceil(sst * 100) / 100.0;
                     total = (packagePrice + additionalItems + sst);
+                    //Math.round function returns the rounded value for example 21.09 * 10 = 210.9 if we divide into / 10 = answer will be
+                    //21.09 but since I am using round up it will round it to 10 if it's 21.04 it will round it to 0
+                    total = Math.round(total * 10) / 10.0;
                     packageForDisplay = "one-player package *" + numOfPackage;
                     arrowForPackage = 20;
                     arrowForPackage = ((arrowForPackage * numOfPackage) + extraArrows);
@@ -98,8 +100,10 @@ public class Assignment1B_Mukhammadaziz {
                     additionalItems = (extraArrows * PRICEFORARROW) + (drinks * PRICEFORDRINK);
                     extraArrows = (int) (extraArrows * PRICEFORARROW);
                     sst = (((packagePrice + additionalItems) / 100) * 6);
-                    sst = Math.ceil(sst * 100) / 100.0;
                     total = (packagePrice + additionalItems + sst);
+                    //Math.round function returns the rounded value for example 42.29 * 10 = 422.9 if we divide into /10 = answer will be
+                    //42.29 but since I am using round up it will round it to 10 if it's 42.24 it will round it to 20
+                    total = Math.round(total * 10) / 10.0;
                     packageForDisplay = "two-player package *" + numOfPackage;
                     arrowForPackage = 50;
                     arrowForPackage = ((arrowForPackage * numOfPackage) + extraArrows);
@@ -133,8 +137,10 @@ public class Assignment1B_Mukhammadaziz {
                     arrowForPackage = 100;
                     extraArrows = (int) (extraArrows * PRICEFORARROW);
                     sst = (((packagePrice + additionalItems) / 100) * 6);
-                    sst = Math.ceil(sst * 100) / 100.0;
                     total = (packagePrice + additionalItems + sst);
+                    //Math.round function returns the rounded value for example 73.09 * 10 = 730.9 if we divide into /10 = answer will be
+                    //79.09 but since I am using round up it will round it to 10 if it's 79.04 it will round it to 0
+                    total = Math.round(total * 10) / 10.0;
                     packageForDisplay = "Family package *" + numOfPackage;
                     arrowForPackage = ((arrowForPackage * numOfPackage) + extraArrows);
                     break;
@@ -171,6 +177,7 @@ public class Assignment1B_Mukhammadaziz {
                 //reorder
                 if (reOrder == 1) {
                     newOrder = true;
+		    System.out.println("\n");
                 } else if (reOrder == 2) {
                     System.out.println("Thanks for your purchase!");
                     System.exit(1);
