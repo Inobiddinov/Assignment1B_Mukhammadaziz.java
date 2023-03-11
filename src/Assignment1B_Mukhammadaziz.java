@@ -13,16 +13,17 @@ public class Assignment1B_Mukhammadaziz {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
 
-        //Declare variables & Initialize them
+        //Declare & Initialize variables
         String packageForDisplay = null;
 
         int checkLastDigit = 0, reOrder = 0, choosenPackage = 0, numOfPackage = 0, addArrows = 0, extraArrows = 0, drinks = 0, arrowForPackage = 0;
 
         final double PRICE_FOR_ONE = 19.90, PRICE_FOR_TWO = 39.90, PRICE_FOR_FAMILY = 69.90, PRICE_FOR_DRINK = 2, PRICE_FOR_ARROW = 10;
 
-        double total = 0, packagePrice = 0, sst = 0,sstRound = 0, additionalItems = 0;
+        double total = 0, packagePrice = 0, sst = 0, sstRound = 0, additionalItems = 0;
 
         boolean validSession = true, validPackage = true, validArrows = true, extraArr = true, extraDrink = true, newOrder = true;
+
 
         //Use of loop until valid input from user
         do {
@@ -40,7 +41,6 @@ public class Assignment1B_Mukhammadaziz {
                     validSession = false;
                     System.out.println("Invalid input. please try again\n");
                 }
-
             } while (!validSession);
 
             switch (choosenPackage) {
@@ -75,6 +75,7 @@ public class Assignment1B_Mukhammadaziz {
                 }
             } while (!validPackage);
 
+            //User choose if want to add arrows or not
             do {
                 System.out.println("Do you want to add extra arrows[1-yes , 2-no] : ");
                 addArrows = scan.nextInt();
@@ -119,6 +120,7 @@ public class Assignment1B_Mukhammadaziz {
             if (addArrows == 2) {
                 extraArrows = 0;
             }
+
             //calculates total cost, sst, number of Archery,drink and package name
             if (choosenPackage == 1) {
                 packagePrice = (numOfPackage * PRICE_FOR_ONE);
@@ -127,27 +129,45 @@ public class Assignment1B_Mukhammadaziz {
             } else if (choosenPackage == 3) {
                 packagePrice = (numOfPackage * PRICE_FOR_FAMILY);
             }
+
             additionalItems = (extraArrows * PRICE_FOR_ARROW) + (drinks * PRICE_FOR_DRINK);
             extraArrows = (int) (extraArrows * PRICE_FOR_ARROW);
             sst = (((packagePrice + additionalItems) / 100) * 6);
+            //convert sst to an integer value and using modulus operator to get last digit of the integer
+            // for example 2.14 * 100 = 214 \ 214 % 10 = 4
+            checkLastDigit = (int) ((sst * 100.0) % 10);
+            //checks last digit and rounds it nears 0 or 10's.
+            switch (checkLastDigit) {
+                case 1:
+                    sstRound = sst - 0.01;
+                    break;
+                case 2, 3:
+                    sstRound = sst - 0.03;
+                    break;
+                case 4:
+                    sstRound = sst - 0.04;
+                    break;
+                case 5:
+                    sstRound = sst - 0.05;
+                    break;
+                case 6:
+                    sstRound = sst + 0.04;
+                    break;
+                case 7:
+                    sstRound = sst + 0.03;
+                    break;
+                case 8:
+                    sstRound = sst + 0.02;
+                    break;
+                case 9:
+                    sstRound = sst + 0.01;
+                    break;
+                default:
+                    sstRound = sst - 0.00;
+                    break;
+            }
 
-//            //modulus remainder method to get last digit for example (2.19 *100 = 219) (219 % 10 = 9)
-//            checkLastDigit = (int) (sst * 100) % 10;
-//
-//            //rounding up it to 0 if it is 9 or if it's 4 it will round it to 5 by adding .0.01
-//            if (checkLastDigit == 9 || checkLastDigit == 4) {
-//                sstRound = sst + 0.01;
-//            } else if (checkLastDigit == 1 || checkLastDigit == 6) {
-//                sstRound = sst - 0.01;
-//            } else if (checkLastDigit == 7 || checkLastDigit == 2) {
-//                sstRound = sst - 0.03;
-//            } else if (checkLastDigit == 8 || checkLastDigit == 3) {
-//                sstRound = sst + 0.02;
-//            } else if (checkLastDigit == 5 || checkLastDigit == 0) {
-//                sstRound = sst + 0.00;
-//            }
-            total = (packagePrice + additionalItems + sst);
-
+            total = (packagePrice + additionalItems + sstRound);
 
             //display package name
             if (choosenPackage == 1) {
@@ -209,6 +229,7 @@ public class Assignment1B_Mukhammadaziz {
                         System.out.println("Invalid input. please try again");
                 }
             } while (!newOrder);
+            //looping back to the start of the program
         } while (reOrder == 1);
     }
 }
