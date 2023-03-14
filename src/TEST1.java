@@ -1,10 +1,11 @@
 //Libraries
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
 
-public class Assignment1B_Mukhammadaziz {
+public class TEST1 {
     public static void main(String[] args) {
 
         //Initialize Scanner and date
@@ -13,13 +14,13 @@ public class Assignment1B_Mukhammadaziz {
         Date date = new Date();
 
         //Declare & Initialize variables
-        String packageForDisplay = null, totalCheck = null;
+        String packageForDisplay = null;
 
         int checkLastDigit = 0, reOrder = 0, choosenPackage = 0, numOfPackage = 0, addArrows = 0, extraArrows = 0, drinks = 0, arrowForPackage = 0;
 
         final double PRICE_FOR_ONE = 19.90, PRICE_FOR_TWO = 39.90, PRICE_FOR_FAMILY = 69.90, PRICE_FOR_DRINK = 2, PRICE_FOR_ARROW = 10;
 
-        double total = 0, packagePrice = 0, sst = 0, additionalItems = 0, sstDisplay = 0;
+        double total = 0, packagePrice = 0, sst = 0, sstRound = 0, additionalItems = 0;
 
         boolean validSession = true, validPackage = true, validArrows = true, extraArr = true, extraDrink = true, newOrder = true;
 
@@ -38,11 +39,10 @@ public class Assignment1B_Mukhammadaziz {
                     validSession = true;
                 } else {
                     validSession = false;
-                    System.out.println("Invalid input. please try with valid option\n");
+                    System.out.println("Invalid input. please try again\n");
                 }
             } while (!validSession);
 
-            //switch case for user to choose package name
             switch (choosenPackage) {
 
                 //One player Package
@@ -65,19 +65,19 @@ public class Assignment1B_Mukhammadaziz {
             }
             do {
                 // Prompts user for package details
-                System.out.println("Enter number of package[>0]: ");
+                System.out.println("Enter number of package: ");
                 numOfPackage = scan.nextInt();
                 if (numOfPackage > 0) {
                     validPackage = true;
                 } else {
                     validPackage = false;
-                    System.out.println("Invalid input.Please input positive value\n");
+                    System.out.println("Invalid input. please try again\n");
                 }
             } while (!validPackage);
 
-            //choice made by user if he/she wants to add arrows or not
+            //User choose if want to add arrows or not
             do {
-                System.out.println("Do you want to add extra arrows[1-yes , 2-no]: ");
+                System.out.println("Do you want to add extra arrows[1-yes , 2-no] : ");
                 addArrows = scan.nextInt();
                 if (addArrows == 1) {
                     validArrows = true;
@@ -85,7 +85,7 @@ public class Assignment1B_Mukhammadaziz {
                     validArrows = true;
                 } else {
                     validArrows = false;
-                    System.out.println("Invalid input. please try with valid option.\n");
+                    System.out.println("Invalid input. please try again\n");
                 }
             } while (!(validArrows));
             if (addArrows == 1) {
@@ -99,7 +99,7 @@ public class Assignment1B_Mukhammadaziz {
                         extraArrows = 0;
                     } else {
                         extraArr = false;
-                        System.out.println("Invalid input. please try to input positive value [>0] \n");
+                        System.out.println("Invalid input. please try again\n");
                     }
                 } while (!extraArr);
             }
@@ -113,7 +113,7 @@ public class Assignment1B_Mukhammadaziz {
                     drinks = 0;
                 } else {
                     extraDrink = false;
-                    System.out.println("Invalid input. please try to input positive value [>0] \n");
+                    System.out.println("Invalid input. please try again\n");
                 }
             } while (!extraDrink);
 
@@ -135,38 +135,41 @@ public class Assignment1B_Mukhammadaziz {
             sst = (((packagePrice + additionalItems) / 100) * 6);
             //convert sst to an integer value and using modulus operator to get last digit of the integer
             // for example 2.14 * 100 = 214 \ 214 % 10 = 4
-
             checkLastDigit = (int) ((sst * 100.0) % 10);
-
-            //I used this to get correct  output  same as sample two
-            sstDisplay = sst;
+            //checks last digit and rounds it nears 0 or 10's.
             switch (checkLastDigit) {
-                case 2:
-                    sst = sst + 0.02;
+                case 1:
+                    sstRound = sst - 0.01;
                     break;
-            }
-            total = (packagePrice + additionalItems + sst);
-
-            totalCheck = String.format("%.2f", total);
-            int len = totalCheck.length();
-            char check = totalCheck.charAt(len - 1);
-            //adding cents to rounding the total to the nearest 0 or 5 or 10.
-            switch (check) {
-                case '1', '6':
-                    total = total - 0.01;
+                case 2, 3:
+                    sstRound = sst - 0.03;
                     break;
-                case '2', '7':
-                    total = total - 0.02;
+                case 4:
+                    sstRound = sst - 0.04;
                     break;
-                case '3', '8':
-                    total = total + 0.02;
-                case '4', '9':
-                    total = total + 0.01;
+                case 5:
+                    sstRound = sst - 0.05;
+                    break;
+                case 6:
+                    sstRound = sst + 0.04;
+                    break;
+                case 7:
+                    sstRound = sst + 0.03;
+                    break;
+                case 8:
+                    sstRound = sst + 0.02;
+                    break;
+                case 9:
+                    sstRound = sst + 0.01;
+                    break;
                 default:
-                    total = total + 0.00;
+                    sstRound = sst - 0.00;
+                    break;
             }
 
-            //display package name with number of package
+            total = (packagePrice + additionalItems + sstRound);
+
+            //display package name
             if (choosenPackage == 1) {
                 packageForDisplay = "one-player package *" + numOfPackage;
                 arrowForPackage = 20;
@@ -180,21 +183,21 @@ public class Assignment1B_Mukhammadaziz {
 
             arrowForPackage = ((arrowForPackage * numOfPackage) + extraArrows);
 
-            //Final Bill
-            System.out.println("\n***SuperFun Archery***");
+            //Final Bill Creator
+            System.out.println("***SuperFun Archery***");
             System.out.println((formatter.format(date)));
             System.out.println(packageForDisplay);
             //checks if drink and extra arrow is 0 then it will ignore this output
             if (extraArrows == 0 && drinks == 0) {
-                System.out.printf("\nTotal Arrows:  %d\n", arrowForPackage);
+                System.out.printf("Total Arrows:  %d\n", arrowForPackage);
             } else if (extraArrows == 0 && drinks > 0) {
                 System.out.printf("Number of Drinks: %d\n", drinks);
                 System.out.printf("\nTotal Arrows:  %d\n", arrowForPackage);
             } else if (extraArrows > 0 && drinks == 0) {
                 System.out.printf("Number of additional arrow: %d\n", extraArrows);
-                System.out.printf("\nTotal Arrows:  %d\n", arrowForPackage);
+                System.out.printf("Total Arrows:  %d\n", arrowForPackage);
             } else {
-                System.out.printf("Number of additional arrow: %d\n", extraArrows);
+                System.out.printf("\nNumber of additional arrow: %d\n", extraArrows);
                 System.out.printf("Number of Drinks: %d\n", drinks);
                 System.out.printf("Total Arrows:  %d\n", arrowForPackage);
             }
@@ -203,17 +206,17 @@ public class Assignment1B_Mukhammadaziz {
             if (extraArrows >= 0 && drinks > 0) {
                 System.out.printf("Additional Items: %.2f\n", additionalItems);
             }
-            System.out.printf("6%% SST: %.2f\n", sstDisplay);
+            System.out.printf("6%% SST: %.2f\n", sst);
             System.out.printf("Net Price: %.2f\n", total);
 
             //prompt user to start new order or finish the program. user should input 1-2 in order to continue
             do {
-                System.out.print("\nDo you wish to start new order [1=Yes - 2=No] :  ");
+                System.out.print("\nDo you wish to order anything else [1=Yes - 2=No] :  ");
                 reOrder = scan.nextInt();
 
                 switch (reOrder) {
                     case 1:
-                        System.out.println("\n");
+                        System.out.println("\n\n");
                         newOrder = true;
                         break;
                     case 2:
@@ -223,7 +226,7 @@ public class Assignment1B_Mukhammadaziz {
 
                     default:
                         newOrder = false;
-                        System.out.println("Invalid input. Please try again with valid option");
+                        System.out.println("Invalid input. please try again");
                 }
             } while (!newOrder);
             //looping back to the start of the program
