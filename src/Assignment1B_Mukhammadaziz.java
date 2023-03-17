@@ -1,4 +1,5 @@
 //Libraries
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -15,7 +16,7 @@ public class Assignment1B_Mukhammadaziz {
         //Declare & Initialize variables
         String packageForDisplay = null, totalCheck = null;
 
-        int checkLastDigit = 0, reOrder = 0, choosenPackage = 0, numOfPackage = 0, addArrows = 0, extraArrows = 0, drinks = 0, arrowForPackage = 0;
+        int checkLastDigit = 0, reOrder = 0, choosenPackage = 0, numOfPackage = 0, addArrows = 0, extraArrows = 0, drinks = 0, arrowForPackage = 0, len = 0;
 
         final double PRICE_FOR_ONE = 19.90, PRICE_FOR_TWO = 39.90, PRICE_FOR_FAMILY = 69.90, PRICE_FOR_DRINK = 2, PRICE_FOR_ARROW = 10;
 
@@ -23,6 +24,7 @@ public class Assignment1B_Mukhammadaziz {
 
         boolean validSession = true, validPackage = true, validArrows = true, extraArr = true, extraDrink = true, newOrder = true;
 
+        char check = ' ';
 
         //Use of loop until valid input from user
         do {
@@ -148,8 +150,8 @@ public class Assignment1B_Mukhammadaziz {
             total = (packagePrice + additionalItems + sst);
 
             totalCheck = String.format("%.2f", total);
-            int len = totalCheck.length();
-            char check = totalCheck.charAt(len - 1);
+            len = totalCheck.length();
+            check = totalCheck.charAt(len - 1);
             //adding cents to rounding the total to the nearest 0 or 5 or 10.
             switch (check) {
                 case '1', '6':
@@ -184,6 +186,7 @@ public class Assignment1B_Mukhammadaziz {
             System.out.println("\n***SuperFun Archery***");
             System.out.println((formatter.format(date)));
             System.out.println(packageForDisplay);
+            System.out.println();
             //checks if drink and extra arrow is 0 then it will ignore this output
             if (extraArrows == 0 && drinks == 0) {
                 System.out.printf("\nTotal Arrows:  %d\n", arrowForPackage);
@@ -228,5 +231,6 @@ public class Assignment1B_Mukhammadaziz {
             } while (!newOrder);
             //looping back to the start of the program
         } while (reOrder == 1);
+        //submitted yesterday and waiting for result hopefully get 100 marks
     }
 }
